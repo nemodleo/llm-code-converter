@@ -36,7 +36,6 @@ const content = {
             <span class="tech-tag">Ollama</span>
             <span class="tech-tag">FAISS</span>
             <span class="tech-tag">Tree-sitter</span>
-            <span class="tech-tag">LangChain</span>
         </div>
 
         <h3>3.2 Key Features</h3>
@@ -86,45 +85,12 @@ const content = {
 
 // Load content when DOM is ready
 document.addEventListener('DOMContentLoaded', function() {
-    // Load abstract content
-    const abstractContent = document.getElementById('abstract-content');
-    if (abstractContent) {
-        abstractContent.innerHTML = content.abstract;
-    }
-
-    // Load introduction content
-    const introductionContent = document.getElementById('introduction-content');
-    if (introductionContent) {
-        introductionContent.innerHTML = content.introduction;
-    }
-
-    // Load method content
-    const methodContent = document.getElementById('method-content');
-    if (methodContent) {
-        methodContent.innerHTML = content.method;
-    }
-
-    // Load method details
-    const methodDetails = document.getElementById('method-details');
-    if (methodDetails) {
-        methodDetails.innerHTML = content.methodDetails;
-    }
-
-    // Load implementation content
-    const implementationContent = document.getElementById('implementation-content');
-    if (implementationContent) {
-        implementationContent.innerHTML = content.implementation;
-    }
-
-    // Load results content
-    const resultsContent = document.getElementById('results-content');
-    if (resultsContent) {
-        resultsContent.innerHTML = content.results;
-    }
-
-    // Load achievements content
-    const achievementsContent = document.getElementById('achievements-content');
-    if (achievementsContent) {
-        achievementsContent.innerHTML = content.achievements;
+    for (const key in content) {
+        if (Object.hasOwnProperty.call(content, key)) {
+            const element = document.getElementById(`${key}-content`);
+            if (element) {
+                element.innerHTML = content[key];
+            }
+        }
     }
 });

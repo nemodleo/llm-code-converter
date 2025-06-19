@@ -10,7 +10,6 @@
 </head>
 <body>
     <div class="container">
-        <!-- Header -->
         <header class="header fade-in">
             <div class="venue-badge">
                 <span class="venue-name">LLM Code Conversion</span>
@@ -47,7 +46,6 @@
             </div>
         </header>
 
-        <!-- Navigation -->
         <nav class="nav fade-in delay-1">
             <div class="nav-container">
                 <div class="nav-links">
@@ -60,7 +58,7 @@
                         <span>Paper</span>
                     </a>
                     <a href="#presentation" class="nav-link">
-                        <i class="fas fa-presentation"></i>
+                        <i class="fas fa-person-chalkboard"></i>
                         <span>Presentation</span>
                     </a>
                     <a href="https://github.com/nemodleo/llm-code-converter" class="nav-link">
@@ -83,7 +81,6 @@
             </div>
         </nav>
 
-        <!-- TL;DR Section -->
         <section class="tldr-section fade-in delay-2">
             <div class="tldr-container">
                 <h2 class="tldr-title">
@@ -107,15 +104,12 @@
             </div>
         </section>
 
-        <!-- Abstract -->
         <section id="abstract" class="abstract fade-in delay-3">
             <h2><i class="fas fa-lightbulb"></i> Abstract</h2>
             <div id="abstract-content">
-                <!-- Content will be loaded from content.js -->
-            </div>
+                </div>
         </section>
 
-        <!-- Demo Video -->
         <section id="demo" class="section demo-section fade-in delay-3">
             <div class="section-header">
                 <h2><i class="fas fa-play-circle"></i> Interactive Demo</h2>
@@ -146,24 +140,20 @@
             </div>
         </section>
 
-        <!-- Introduction -->
-        <section class="section fade-in delay-4">
+        <section id="introduction" class="section fade-in delay-4">
             <h2>1. Introduction</h2>
             <div id="introduction-content">
-                <!-- Content will be loaded from content.js -->
-            </div>
+                </div>
         </section>
 
-        <!-- Method -->
-        <section class="section methodology-section fade-in">
+        <section id="method" class="section methodology-section fade-in">
             <div class="section-header">
                 <h2><i class="fas fa-cogs"></i> Methodology</h2>
                 <p class="section-subtitle">LLM 기반 3단계 코드 변환 파이프라인</p>
             </div>
             
             <div id="method-content">
-                <!-- Content will be loaded from content.js -->
-            </div>
+                </div>
 
             <div class="architecture-showcase">
                 <div class="architecture-header">
@@ -243,7 +233,7 @@ flowchart TD
                 <div class="method-overview">
                     <div class="method-step enhanced">
                         <div class="step-icon">
-                            <i class="fas fa-search"></i>
+                            <i class="fas fa-search-plus"></i>
                         </div>
                         <div class="step-number">01</div>
                         <h4>Dependency Analysis</h4>
@@ -293,68 +283,15 @@ flowchart TD
             </div>
 
             <div id="method-details">
-                <!-- Detailed method content will be loaded from content.js -->
-            </div>
+                </div>
         </section>
 
-        <!-- Presentation -->
-        <section id="presentation" class="section presentation-section fade-in">
-            <div class="section-header">
-                <h2><i class="fas fa-presentation"></i> Final Presentation</h2>
-                <p class="section-subtitle">최종 발표 자료 및 핵심 내용</p>
-            </div>
-            
-            <div class="presentation-container">
-                <div class="presentation-embed">
-                    <iframe 
-                        src="https://github.com/nemodleo/llm-code-converter/blob/main/src/R%EC%A1%B0_%EC%B5%9C%EC%A2%85%EB%B0%9C%ED%91%9C%EC%9E%90%EB%A3%8C.pdf" 
-                        width="100%" 
-                        height="600" 
-                        style="border: none; border-radius: 12px; box-shadow: 0 8px 32px rgba(0,0,0,0.12);">
-                    </iframe>
-                </div>
-                
-                <div class="presentation-info">
-                    <h3>📑 발표 하이라이트</h3>
-                    <div class="presentation-highlights">
-                        <div class="highlight-item">
-                            <i class="fas fa-target"></i>
-                            <span><strong>Problem Definition:</strong> 수작업 마이그레이션의 한계점 분석</span>
-                        </div>
-                        <div class="highlight-item">
-                            <i class="fas fa-lightbulb"></i>
-                            <span><strong>Solution Approach:</strong> LLM 기반 3단계 파이프라인 설계</span>
-                        </div>
-                        <div class="highlight-item">
-                            <i class="fas fa-chart-line"></i>
-                            <span><strong>Experimental Results:</strong> 50%+ 자동 변환 정확도 달성</span>
-                        </div>
-                        <div class="highlight-item">
-                            <i class="fas fa-rocket"></i>
-                            <span><strong>Impact & Future:</strong> 실무 적용 가능성 및 확장성</span>
-                        </div>
-                    </div>
-                    
-                    <div class="presentation-download">
-                        <a href="https://github.com/nemodleo/llm-code-converter/blob/main/src/R%EC%A1%B0_%EC%B5%9C%EC%A2%85%EB%B0%9C%ED%91%9C%EC%9E%90%EB%A3%8C.pdf" 
-                           class="download-btn presentation-btn" target="_blank">
-                            <i class="fas fa-download"></i>
-                            Download Slides (PDF)
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Implementation -->
-        <section class="section">
+        <section id="implementation" class="section">
             <h2>3. Implementation</h2>
             <div id="implementation-content">
-                <!-- Content will be loaded from content.js -->
-            </div>
+                </div>
         </section>
 
-        <!-- Results -->
         <section id="results" class="section results-section">
             <div class="section-header">
                 <h2><i class="fas fa-trophy"></i> Experimental Results</h2>
@@ -368,12 +305,12 @@ flowchart TD
                     <div class="highlight-label">Conversion Accuracy</div>
                 </div>
                 <div class="highlight-card">
-                    <div class="highlight-icon">⚡</div>
+                    <div class="highlight-icon">⚡️</div>
                     <div class="highlight-number">70%</div>
                     <div class="highlight-label">Time Reduction</div>
                 </div>
                 <div class="highlight-card">
-                    <div class="highlight-icon">🔧</div>
+                    <div class="highlight-icon">⚙️</div>
                     <div class="highlight-number">3</div>
                     <div class="highlight-label">Integrated Modules</div>
                 </div>
@@ -385,8 +322,7 @@ flowchart TD
             </div>
             
             <div id="results-content">
-                <!-- Content will be loaded from content.js -->
-            </div>
+                </div>
 
             <div class="results-table-container">
                 <h3><i class="fas fa-chart-bar"></i> Performance Metrics</h3>
@@ -434,20 +370,19 @@ flowchart TD
             </div>
 
             <div id="achievements-content">
-                <!-- Achievements content will be loaded from content.js -->
-            </div>
+                </div>
         </section>
 
-        <!-- Presentation -->
         <section id="presentation" class="section presentation-section fade-in">
             <div class="section-header">
-                <h2><i class="fas fa-presentation"></i> Presentation</h2>
+                <h2><i class="fas fa-person-chalkboard"></i> Final Presentation</h2>
+                <p class="section-subtitle">최종 발표 자료 및 핵심 내용</p>
             </div>
             
             <div class="presentation-container">
                 <div class="presentation-embed">
                     <iframe 
-                        src="https://github.com/nemodleo/llm-code-converter/blob/main/src/R%EC%A1%B0_%EC%B5%9C%EC%A2%85%EB%B0%9C%ED%91%9C%EC%9E%90%EB%A3%8C.pdf" 
+                        src="../src/R%EC%A1%B0_%EC%B5%9C%EC%A2%85%EB%B0%9C%ED%91%9C%EC%9E%90%EB%A3%8C.pdf" 
                         width="100%" 
                         height="600" 
                         style="border: none; border-radius: 12px; box-shadow: 0 8px 32px rgba(0,0,0,0.12);">
@@ -458,7 +393,7 @@ flowchart TD
                     <h3>📑 발표 하이라이트</h3>
                     <div class="presentation-highlights">
                         <div class="highlight-item">
-                            <i class="fas fa-target"></i>
+                            <i class="fas fa-bullseye"></i>
                             <span><strong>Problem Definition:</strong> 수작업 마이그레이션의 한계점 분석</span>
                         </div>
                         <div class="highlight-item">
@@ -466,7 +401,7 @@ flowchart TD
                             <span><strong>Solution Approach:</strong> LLM 기반 3단계 파이프라인 설계</span>
                         </div>
                         <div class="highlight-item">
-                            <i class="fas fa-chart-line"></i>
+                            <i class="fas fa-chart-pie"></i>
                             <span><strong>Experimental Results:</strong> 50%+ 자동 변환 정확도 달성</span>
                         </div>
                         <div class="highlight-item">
@@ -476,9 +411,9 @@ flowchart TD
                     </div>
                     
                     <div class="presentation-download">
-                        <a href="https://github.com/nemodleo/llm-code-converter/blob/main/src/R%EC%A1%B0_%EC%B5%9C%EC%A2%85%EB%B0%9C%ED%91%9C%EC%9E%90%EB%A3%8C.pdf" 
+                        <a href="../src/R%EC%A1%B0_%EC%B5%9C%EC%A2%85%EB%B0%9C%ED%91%9C%EC%9E%90%EB%A3%8C.pdf" 
                            class="download-btn presentation-btn" target="_blank">
-                            <i class="fas fa-download"></i>
+                            <i class="fas fa-file-arrow-down"></i>
                             Download Slides (PDF)
                         </a>
                     </div>
@@ -486,14 +421,13 @@ flowchart TD
             </div>
         </section>
 
-        <!-- Downloads -->
-        <section class="download-section premium">
+        <section id="downloads" class="download-section premium">
             <div class="download-header">
                 <h2><i class="fas fa-download"></i> Resources & Downloads</h2>
                 <p class="download-subtitle">모든 자료는 오픈소스로 제공됩니다</p>
             </div>
             <div class="download-grid">
-                <a href="https://github.com/nemodleo/llm-code-converter/blob/main/src/R%EC%A1%B0_%EA%B8%B0%EB%A7%90%EB%B3%B4%EA%B3%A0%EC%84%9C.pdf" class="download-card primary">
+                <a href="../src/R%EC%A1%B0_%EA%B8%B0%EB%A7%90%EB%B3%B4%EA%B3%A0%EC%84%9C.pdf" class="download-card primary">
                     <div class="download-icon">
                         <i class="fas fa-file-pdf"></i>
                     </div>
@@ -505,7 +439,7 @@ flowchart TD
                 </a>
                 <a href="https://github.com/nemodleo/llm-code-converter/blob/main/src/R%EC%A1%B0_%EC%B5%9C%EC%A2%85%EB%B0%9C%ED%91%9C%EC%9E%90%EB%A3%8C.pdf" class="download-card">
                     <div class="download-icon">
-                        <i class="fas fa-presentation"></i>
+                        <i class="fas fa-person-chalkboard"></i>
                     </div>
                     <div class="download-content">
                         <h3>Presentation Slides</h3>
@@ -536,7 +470,6 @@ flowchart TD
             </div>
         </section>
 
-        <!-- Citation -->
         <section id="bibtex" class="citation-section">
             <div class="citation-container">
                 <h2><i class="fas fa-quote-right"></i> Citation</h2>
@@ -559,12 +492,11 @@ flowchart TD
         </section>
     </div>
 
-    <!-- Footer -->
     <footer class="footer premium">
         <div class="footer-content">
             <div class="footer-main">
                 <div class="footer-logo">
-                    <i class="fas fa-code"></i>
+                    <i class="fas fa-code-branch"></i>
                     <span>LLM Code Converter</span>
                 </div>
                 <p class="footer-description">
@@ -586,6 +518,11 @@ flowchart TD
                     <ul>
                         <li>박현 (SNU CSE)</li>
                         <li>배준익 (SNU CSE)</li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>지도교수</h4>
+                    <ul>
                         <li>엄현상 (SNU CSE)</li>
                     </ul>
                 </div>
@@ -599,7 +536,7 @@ flowchart TD
         </div>
         <div class="footer-bottom">
             <div class="footer-copyright">
-                <p>&copy; 2024 LLM-based Code Generation & Conversion Project</p>
+                <p>&copy; 2025 LLM-based Code Generation & Conversion Project</p>
                 <p>인스웨이브 산학협력 프로젝트</p>
             </div>
             <div class="footer-social">
@@ -631,72 +568,12 @@ flowchart TD
                 const btn = document.querySelector('.copy-btn');
                 const originalText = btn.innerHTML;
                 btn.innerHTML = '<i class="fas fa-check"></i> Copied!';
-                btn.style.background = '#28a745';
+                btn.classList.add('copied');
                 setTimeout(() => {
                     btn.innerHTML = originalText;
-                    btn.style.background = '';
+                    btn.classList.remove('copied');
                 }, 2000);
             });
-        }
-
-        // Enhanced animations
-        document.addEventListener('DOMContentLoaded', function() {
-            // Intersection Observer for advanced animations
-            const observerOptions = {
-                threshold: 0.1,
-                rootMargin: '0px 0px -50px 0px'
-            };
-
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.style.opacity = '1';
-                        entry.target.style.transform = 'translateY(0)';
-                        
-                        // Special animations for different elements
-                        if (entry.target.classList.contains('method-step')) {
-                            entry.target.style.transform = 'translateY(0) scale(1)';
-                        }
-                        if (entry.target.classList.contains('highlight-card')) {
-                            entry.target.style.transform = 'translateY(0) rotateY(0deg)';
-                        }
-                    }
-                });
-            }, observerOptions);
-
-            // Observe elements
-            document.querySelectorAll('.fade-in, .method-step, .highlight-card').forEach(el => {
-                observer.observe(el);
-            });
-
-            // Number counting animation for highlight cards
-            document.querySelectorAll('.highlight-number').forEach(el => {
-                const finalValue = el.textContent;
-                if (finalValue.includes('%')) {
-                    const num = parseInt(finalValue);
-                    animateNumber(el, 0, num, 2000, '%');
-                } else if (finalValue.includes('+')) {
-                    const num = parseInt(finalValue);
-                    animateNumber(el, 0, num, 2000, '+');
-                } else if (!isNaN(parseInt(finalValue))) {
-                    const num = parseInt(finalValue);
-                    animateNumber(el, 0, num, 2000, '');
-                }
-            });
-        });
-
-        function animateNumber(element, start, end, duration, suffix = '') {
-            let startTimestamp = null;
-            const step = (timestamp) => {
-                if (!startTimestamp) startTimestamp = timestamp;
-                const progress = Math.min((timestamp - startTimestamp) / duration, 1);
-                const current = Math.floor(progress * (end - start) + start);
-                element.textContent = current + suffix;
-                if (progress < 1) {
-                    window.requestAnimationFrame(step);
-                }
-            };
-            window.requestAnimationFrame(step);
         }
     </script>
 </body>

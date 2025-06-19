@@ -160,20 +160,24 @@ body {
     line-height: 1.7;
 }
 
-/* Architecture diagram placeholder */
+/* Architecture diagram */
 .architecture-diagram {
-    background: #f8f9fa;
-    border: 2px dashed #ddd;
-    padding: 60px 20px;
-    text-align: center;
+    background: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 12px;
+    padding: 30px;
     margin: 30px 0;
-    border-radius: 8px;
+    text-align: center;
 }
 
-.architecture-diagram i {
-    font-size: 3em;
-    color: #ccc;
-    margin-bottom: 20px;
+.architecture-diagram .mermaid {
+    max-width: 100%;
+    overflow-x: auto;
+}
+
+.architecture-diagram svg {
+    max-width: 100%;
+    height: auto;
 }
 
 /* Method overview */

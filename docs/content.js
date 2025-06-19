@@ -23,32 +23,8 @@ const content = {
     `,
 
     methodDetails: `
-        <h3>2.1 Dependency Analysis Module</h3>
-        <p>Java 소스 코드에서 요소 단위 의존성을 분석하는 모듈로, Tree-sitter 기반 자바 코드 분석을 통해 구조적 요소와 의존성 관계를 추출한다. Map.get("key")와 같은 패턴을 분석하여 VO 클래스의 스켈레톤을 생성한다.</p>
-        <div class="code-example">
-ElementLevelDependencyAnalyzer:
-- extract_element_level_dependencies: Call Graph 추출
-- _analyze_node_dependencies: Map.get("key") 패턴 분석
-- MapToVOConverter: VO 클래스 자동 생성
-        </div>
-
-        <h3>2.2 Code Conversion Module</h3>
-        <p>생성된 VO 클래스 정보 및 Map 기반 레거시 구현을 기반으로, 지정된 LLM Agent를 통해 Map 기반 구현을 VO 기반으로 변환한다. RAG 기법을 통해 Proworks 5 문서를 실시간으로 참조하여 변환 맥락을 제공한다.</p>
-        <div class="code-example">
-LLM Code Conversion:
-- convert(): VO 기반 코드 변환
-- RAG integration: Proworks 5 문서 참조
-- Context-aware transformation
-        </div>
-
-        <h3>2.3 Self-Refinement Module</h3>
-        <p>변환된 VO 기반 코드에 대해 LLM 기반의 정적 피드백을 수행하며, Reflexion 기법을 통해 변환과 피드백 과정을 반복적으로 수행하여 안정적인 코드 품질을 확보한다.</p>
-        <div class="code-example">
-Self-Refinement:
-- feedback(): 코드 품질 평가
-- conversion_feedback_loop(): 반복적 개선
-- Reflexion-based quality assurance
-        </div>
+        <h3>2.1 Implementation Architecture</h3>
+        <p>전체 시스템은 FastAPI 기반의 RESTful 서버로 구성되었으며, LLM 서빙과 클라이언트 요청 간의 통신을 효율적으로 처리하도록 설계되었다. 사용자 인터페이스는 VS Code 확장 기능 형태로 구현되었으며, 기존의 llm-vscode 오픈소스 프로젝트를 참고하여 프로젝트 요구에 맞는 사용자 경험을 설계하였다.</p>
     `,
 
     implementation: `

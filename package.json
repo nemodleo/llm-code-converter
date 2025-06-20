@@ -1,0 +1,133 @@
+{
+  "name": "llm-code-converter",
+  "displayName": "LLM Code Converter",
+  "description": "AI-powered code conversion tool with drag-to-# feature",
+  "version": "1.0.0",
+  "publisher": "yourname",
+  "engines": {
+    "vscode": "^1.74.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "*"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "llm-code-converter.convertCode",
+        "title": "Convert Selected Code Map to VO"
+      },
+      {
+        "command": "llm-code-converter.generateVO",
+        "title": "Generate VO Code",
+        "icon": "$(play)"
+      },
+      {
+        "command": "llm-code-converter.refreshView",
+        "title": "Refresh",
+        "icon": "$(refresh)"
+      },
+      {
+        "command": "llm-code-converter.refreshConverter",
+        "title": "Refresh Converter",
+        "icon": "$(refresh)"
+      },
+      {
+        "command": "llm-code-converter.setProjectPath",
+        "title": "Set Project Path"
+      },
+      {
+        "command": "llm-code-converter.setOutputPath",
+        "title": "Set Output Path"
+      }
+    ],
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "llm-code-converter",
+          "title": "LLM Code Converter",
+          "icon": "$(code)"
+        }
+      ]
+    },
+    "views": {
+      "llm-code-converter": [
+        {
+          "id": "voGeneratorView",
+          "name": "VO Generator",
+          "when": "true"
+        },
+        {
+          "id": "codeConverterView", 
+          "name": "Code Converter",
+          "when": "true"
+        }
+      ]
+    },
+    "menus": {
+      "view/title": [
+        {
+          "command": "llm-code-converter.generateVO",
+          "when": "view == voGeneratorView",
+          "group": "navigation"
+        },
+        {
+          "command": "llm-code-converter.refreshView",
+          "when": "view == voGeneratorView",
+          "group": "navigation"
+        },
+        {
+          "command": "llm-code-converter.refreshConverter",
+          "when": "view == codeConverterView", 
+          "group": "navigation"
+        }
+      ],
+      "editor/context": [
+        {
+          "command": "llm-code-converter.convertCode",
+          "when": "editorHasSelection",
+          "group": "1_modification"
+        }
+      ],
+      "commandPalette": [
+        {
+          "command": "llm-code-converter.convertCode",
+          "when": "editorHasSelection"
+        },
+        {
+          "command": "llm-code-converter.generateVO"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "LLM Code Converter",
+      "properties": {
+        "llmCodeConverter.apiEndpoint": {
+          "type": "string",
+          "default": "http://localhost:8000",
+          "description": "LLM API endpoint URL"
+        },
+        "llmCodeConverter.timeout": {
+          "type": "number",
+          "default": 30000,
+          "description": "Request timeout in milliseconds"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.74.0",
+    "@types/node": "16.x",
+    "typescript": "^4.9.4"
+  },
+  "dependencies": {
+    "axios": "^1.6.0"
+  }
+}

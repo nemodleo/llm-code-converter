@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kds.poc.cvt.mapper.FundMapper">
+
+    <!-- Fund 기본 CRUD -->
+    <insert id="insertFund" parameterType="map">
+        INSERT INTO FUND (
+            FUND_CODE, FUND_NAME, FUND_TYPE, MANAGER, NAV, 
+            TOTAL_ASSETS, EXPENSE_RATIO, INCEPTION_DATE, RISK_LEVEL, 
+            STATUS, DESCRIPTION, LAST_UPDATE
+        ) VALUES (
+            #{FUND_CODE}, #{FUND_NAME}, #{FUND_TYPE}, #{MANAGER}, #{NAV},
+            #{TOTAL_ASSETS}, #{EXPENSE_RATIO}, #{INCEPTION_DATE}, #{RISK_LEVEL},
+            #{STATUS}, #{DESCRIPTION}, #{LAST_UPDATE}
+        )
+    </insert>
+
+    <update id="updateFund" parameterType="map">
+        UPDATE FUND SET
+            FUND_NAME = #{FUND_NAME},
+            FUND_TYPE = #{FUND_TYPE},
+            MANAGER = #{MANAGER},
+            NAV = #{NAV},
+            TOTAL_ASSETS = #{TOTAL_ASSETS},
+            EXPENSE_RATIO = #{EXPENSE_RATIO},
+            INCEPTION_DATE = #{INCEPTION_DATE},
+            RISK_LEVEL = #{RISK_LEVEL},
+            STATUS = #{STATUS},
+            DESCRIPTION = #{DESCRIPTION},
+            LAST_UPDATE = #{LAST_UPDATE}
+        WHERE FUND_CODE = #{FUND_CODE}
+    </update>
+
+    <delete id="deleteFund" parameterType="map">
+        DELETE FROM FUND WHERE FUND_CODE = #{FUND_CODE}
+    </delete>
+
+    <select id="selectFund" parameterType="map" resultType="map">
+        SELECT 
+            FUND_CODE,
+            FUND_NAME,
+            FUND_TYPE,
+            MANAGER,
+            NAV,
+            TOTAL_ASSETS,
+            EXPENSE_RATIO,
+            INCEPTION_DATE,
+            RISK_LEVEL,
+            STATUS,
+            DESCRIPTION,
+            LAST_UPDATE
+        FROM FUND
+        <where>
+            <if test="FUND_CODE != null and FUND_CODE != ''">
+                AND FUND_CODE = #{FUND_CODE}
+            </if>
+            <if test="FUND_NAME != null and FUND_NAME != ''">
+                AND FUND_NAME LIKE '%' || #{FUND_NAME} || '%'
+            </if>
+            <if test="FUND_TYPE != null and FUND_TYPE != ''">
+                AND FUND_TYPE = #{FUND_TYPE}
+            </if>
+            <if test="MANAGER != null and MANAGER != ''">
+                AND MANAGER = #{MANAGER}
+            </if>
+            <if test="RISK_LEVEL != null and RISK_LEVEL != ''">
+                AND RISK_LEVEL = #{RISK_LEVEL}
+            </if>
+            <if test="STATUS != null and STATUS != ''">
+                AND STATUS = #{STATUS}
+            </if>
+        </where>
+        ORDER BY FUND_CODE
+    </select>
+
+    <select id="selectFundByCode" parameterType="string" resultType="map">
+        SELECT 
+            FUND_CODE,
+            FUND_NAME,
+            FUND_TYPE,
+            MANAGER,
+            NAV,
+            TOTAL_ASSETS,
+            EXPENSE_RATIO,
+            INCEPTION_DATE,
+            RISK_LEVEL,
+            STATUS,
+            DESCRIPTION,
+            LAST_UPDATE
+        FROM FUND
+        WHERE FUND_CODE = #{fundCode}
+    </select>
+
+    <!-- Fund Performance 관련 -->
+    <insert id="insertFundPerformance" parameterType="map">
+        INSERT INTO FUND_PERFORMANCE (
+            FUND_CODE, DATE, NAV, DAILY_RETURN, WEEKLY_RETURN,
+            MONTHLY_RETURN, YEARLY_RETURN, TOTAL_RETURN,
+            BENCHMARK_RETURN, SHARPE_RATIO, VOLATILITY, MAX_DRAWDOWN
+        ) VALUES (
+            #{FUND_CODE}, #{DATE}, #{NAV}, #{DAILY_RETURN}, #{WEEKLY_RETURN},
+            #{MONTHLY_RETURN}, #{YEARLY_RETURN}, #{TOTAL_RETURN},
+            #{BENCHMARK_RETURN}, #{SHARPE_RATIO}, #{VOLATILITY}, #{MAX_DRAWDOWN}
+        )
+    </insert>
+
+    <select id="selectFundPerformance" parameterType="string" resultType="map">
+        SELECT 
+            FUND_CODE,
+            DATE,
+            NAV,
+            DAILY_RETURN,
+            WEEKLY_RETURN,
+            MONTHLY_RETURN,
+            YEARLY_RETURN,
+            TOTAL_RETURN,
+            BENCHMARK_RETURN,
+            SHARPE_RATIO,
+            VOLATILITY,
+            MAX_DRAWDOWN
+        FROM FUND_PERFORMANCE
+        WHERE FUND_CODE = #{fundCode}
+        ORDER BY DATE DESC
+    </select>
+
+    <select id="selectFundPerformanceByDateRange" resultType="map">
+        SELECT 
+            FUND_CODE,
+            DATE,
+            NAV,
+            DAILY_RETURN,
+            WEEKLY_RETURN,
+            MONTHLY_RETURN,
+            YEARLY_RETURN,
+            TOTAL_RETURN,
+            BENCHMARK_RETURN,
+            SHARPE_RATIO,
+            VOLATILITY,
+            MAX_DRAWDOWN
+        FROM FUND_PERFORMANCE
+        WHERE FUND_CODE = #{fundCode}
+        AND DATE BETWEEN #{startDate} AND #{endDate}
+        ORDER BY DATE DESC
+    </select>
+
+</mapper> 

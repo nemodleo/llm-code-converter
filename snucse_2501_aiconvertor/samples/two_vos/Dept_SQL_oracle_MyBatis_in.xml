@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.inswave.cvt">
+
+    <!-- [1]/[5] ********** id=com.inswave.cvt.InsertDept ********** -->
+    <resultMap id="InsertDept" type="java.util.HashMap"/>
+    <insert id="InsertDept" parameterType="java.util.HashMap">
+        INSERT INTO DEPT (DEPTNO, DNAME, LOC, BUDGET) 
+        VALUES (#{DEPTNO}, #{DNAME}, #{LOC}, #{BUDGET})
+    </insert>
+
+    <!-- [2]/[5] ********** id=com.inswave.cvt.UpdateDept ********** -->
+    <resultMap id="UpdateDept" type="java.util.HashMap"/>
+    <update id="UpdateDept" parameterType="java.util.HashMap">
+        UPDATE DEPT 
+        SET DNAME = #{DNAME},
+            LOC = #{LOC},
+            BUDGET = #{BUDGET}
+        WHERE DEPTNO = #{DEPTNO}
+    </update>
+
+    <!-- [3]/[5] ********** id=com.inswave.cvt.DeleteDept ********** -->
+    <resultMap id="DeleteDept" type="java.util.HashMap"/>
+    <delete id="DeleteDept" parameterType="java.util.HashMap">
+        DELETE FROM DEPT WHERE DEPTNO = #{DEPTNO}
+    </delete>
+
+    <!-- [4]/[5] ********** id=com.inswave.cvt.SelectDept ********** -->
+    <resultMap id="SelectDept" type="java.util.HashMap">
+        <result property="DEPTNO" column="DEPTNO"/>
+        <result property="DNAME" column="DNAME"/>
+        <result property="LOC" column="LOC"/>
+        <result property="BUDGET" column="BUDGET"/>
+    </resultMap>
+    <select id="SelectDept" parameterType="java.util.HashMap" resultMap="SelectDept">
+        SELECT DEPTNO, DNAME, LOC, BUDGET 
+        FROM DEPT
+        <where>
+            <if test="DEPTNO != null">
+                DEPTNO = #{DEPTNO}
+            </if>
+            <if test="DNAME != null and DNAME != ''">
+                AND DNAME LIKE '%' || #{DNAME} || '%'
+            </if>
+            <if test="LOC != null and LOC != ''">
+                AND LOC = #{LOC}
+            </if>
+        </where>
+    </select>
+
+    <!-- [5]/[5] ********** id=com.inswave.cvt.SelectDeptWithEmps ********** -->
+    <resultMap id="SelectDeptWithEmps" type="java.util.HashMap">
+        <result property="DEPTNO" column="DEPTNO"/>
+        <result property="DNAME" column="DNAME"/>
+        <result property="LOC" column="LOC"/>
+        <result property="BUDGET" column="BUDGET"/>
+        <result property="EMPNO" column="EMPNO"/>
+        <result property="ENAME" column="ENAME"/>
+        <result property="JOB" column="JOB"/>
+        <result property="SAL" column="SAL"/>
+    </resultMap>
+    <select id="SelectDeptWithEmps" parameterType="java.util.HashMap" resultMap="SelectDeptWithEmps">
+        SELECT d.DEPTNO, d.DNAME, d.LOC, d.BUDGET,
+               e.EMPNO, e.ENAME, e.JOB, e.SAL
+        FROM DEPT d
+        INNER JOIN EMP e ON d.DEPTNO = e.DEPTNO
+        <where>
+            <if test="EMPNO != null">
+                e.EMPNO = #{EMPNO}
+            </if>
+            <if test="ENAME != null and ENAME != ''">
+                AND e.ENAME LIKE '%' || #{ENAME} || '%'
+            </if>
+            <if test="JOB != null and JOB != ''">
+                AND e.JOB = #{JOB}
+            </if>
+            <if test="SAL != null">
+                AND e.SAL >= #{SAL}
+            </if>
+            <if test="DEPTNO != null">
+                AND e.DEPTNO = #{DEPTNO}
+            </if>
+        </where>
+    </select>
+
+</mapper> 

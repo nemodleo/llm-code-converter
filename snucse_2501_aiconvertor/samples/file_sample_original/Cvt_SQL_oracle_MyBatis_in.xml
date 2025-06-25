@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?><!--Converted at: Thu Sep 23 13:05:59 KST 2021-->
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.inswave.cvt">
+
+<!-- [1]/[4] ********** id=com.inswave.cvt.InsertEmp ********** -->
+    <resultMap id="InsertEmp" type="java.util.HashMap"/>
+    <insert id="InsertEmp">
+INSERT INTO EMP (EMPNO, ENAME, JOB, MGR, HIREDATE, SAL, COMM, DEPTNO, ACCOUNT) VALUES (#{EMPNO}, #{ENAME}, #{JOB}, #{MGR}, sysdate, #{SAL}, #{COMM}, #{DEPTNO}, #{ACCOUNT})
+</insert>
+
+<!-- [2]/[4] ********** id=com.inswave.cvt.UpdateEmp ********** -->
+    <resultMap id="UpdateEmp" type="java.util.HashMap"/>
+    <update id="UpdateEmp">
+UPDATE EMP SET JOB='대리', SAL=6000 --comment1 
+WHERE EMPNO = #{EMPNO} AND ENAME = #{ENAME} --주석
+</update>
+
+<!-- [3]/[4] ********** id=com.inswave.cvt.DeleteEmp ********** -->
+    <resultMap id="DeleteEmp" type="java.util.HashMap"/>
+    <delete id="DeleteEmp">
+DELETE FROM EMP WHERE EMPNO = #{EMPNO} AND ENAME = #{ENAME}
+</delete>
+
+<!-- [4]/[4] ********** id=com.inswave.cvt.SelectEmp ********** -->
+    <resultMap id="SelectEmp" type="java.util.HashMap">
+        <result property="EMPNO" column="EMPNO"/>
+        <result property="ENAME" column="ENAME"/>
+        <result property="JOB" column="JOB"/>
+        <result property="MGR" column="MGR"/>
+        <result property="HIREDATE" column="HIREDATE"/>
+        <result property="SAL" column="SAL"/>
+        <result property="COMM" column="COMM"/>
+        <result property="DEPTNO" column="DEPTNO"/>
+        <result property="ACCOUNT" column="ACCOUNT"/>
+    </resultMap>
+    <select id="SelectEmp" parameterType="java.util.HashMap" resultMap="SelectEmp">
+SELECT EMPNO, ENAME, JOB, MGR, HIREDATE, SAL, COMM, DEPTNO, ACCOUNT FROM EMP
+</select>
+
+
+</mapper>

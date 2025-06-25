@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.inswave.cvt">
+
+    <!-- Employee Insert Operation -->
+    <resultMap id="InsertEmp" type="java.util.HashMap"/>
+    <insert id="InsertEmp" parameterType="java.util.HashMap">
+        INSERT INTO EMP (
+            EMPNO,
+            ENAME,
+            JOB,
+            MGR,
+            HIREDATE,
+            SAL,
+            COMM,
+            DEPTNO,
+            ACCOUNT
+        ) VALUES (
+            #{EMPNO},
+            #{ENAME},
+            #{JOB},
+            #{MGR},
+            SYSDATE,
+            #{SAL},
+            #{COMM},
+            #{DEPTNO},
+            #{ACCOUNT}
+        )
+    </insert>
+
+    <!-- Employee Update Operation -->
+    <resultMap id="UpdateEmp" type="java.util.HashMap"/>
+    <update id="UpdateEmp" parameterType="java.util.HashMap">
+        UPDATE EMP
+        SET JOB = #{JOB},
+            SAL = #{SAL}
+        WHERE EMPNO = #{EMPNO}
+    </update>
+
+    <!-- Employee Delete Operation -->
+    <resultMap id="DeleteEmp" type="java.util.HashMap"/>
+    <delete id="DeleteEmp" parameterType="java.util.HashMap">
+        DELETE FROM EMP
+        WHERE EMPNO = #{EMPNO}
+    </delete>
+
+    <!-- Employee Select Operation -->
+    <resultMap id="SelectEmp" type="java.util.HashMap">
+        <result property="EMPNO" column="EMPNO"/>
+        <result property="ENAME" column="ENAME"/>
+        <result property="JOB" column="JOB"/>
+        <result property="MGR" column="MGR"/>
+        <result property="HIREDATE" column="HIREDATE"/>
+        <result property="SAL" column="SAL"/>
+        <result property="COMM" column="COMM"/>
+        <result property="DEPTNO" column="DEPTNO"/>
+        <result property="ACCOUNT" column="ACCOUNT"/>
+    </resultMap>
+
+    <select id="SelectEmp" parameterType="java.util.HashMap" resultMap="SelectEmp">
+        SELECT 
+            EMPNO,
+            ENAME,
+            JOB,
+            MGR,
+            HIREDATE,
+            SAL,
+            COMM,
+            DEPTNO,
+            ACCOUNT
+        FROM EMP
+        <where>
+            <if test="EMPNO != null">AND EMPNO = #{EMPNO}</if>
+            <if test="ENAME != null">AND ENAME LIKE '%' || #{ENAME} || '%'</if>
+            <if test="JOB != null">AND JOB = #{JOB}</if>
+            <if test="DEPTNO != null">AND DEPTNO = #{DEPTNO}</if>
+        </where>
+        ORDER BY EMPNO
+    </select>
+
+</mapper> 

@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.inswave.cvt">
+
+    <resultMap id="EmpVoMap" type="kds.poc.com.inswave.cvt.vo.EmpVo">
+        <id property="empno" column="EMPNO"/>
+        <result property="ename" column="ENAME"/>
+        <result property="job" column="JOB"/>
+        <result property="mgr" column="MGR"/>
+        <result property="hiredate" column="HIREDATE"/>
+        <result property="sal" column="SAL"/>
+        <result property="comm" column="COMM"/>
+        <result property="deptno" column="DEPTNO"/>
+        <result property="account" column="ACCOUNT"/>
+    </resultMap>
+
+    <!-- Employee Insert Operation -->
+    <resultMap id="InsertEmp" type="kds.poc.com.inswave.cvt.vo.EmpVo"/>
+    <insert id="InsertEmp" parameterType="kds.poc.com.inswave.cvt.vo.EmpVo">
+        INSERT INTO EMP (
+            EMPNO,
+            ENAME,
+            JOB,
+            MGR,
+            HIREDATE,
+            SAL,
+            COMM,
+            DEPTNO,
+            ACCOUNT
+        ) VALUES (
+            #{empno},
+            #{ename},
+            #{job},
+            #{mgr},
+            SYSDATE,
+            #{sal},
+            #{comm},
+            #{deptno},
+            #{account}
+        )
+    </insert>
+
+    <!-- Employee Update Operation -->
+    <resultMap id="UpdateEmp" type="kds.poc.com.inswave.cvt.vo.EmpVo"/>
+    <update id="UpdateEmp" parameterType="kds.poc.com.inswave.cvt.vo.EmpVo">
+        UPDATE EMP 
+        SET JOB = #{job},
+            SAL = #{sal}
+        WHERE EMPNO = #{empno}
+    </update>
+
+    <!-- Employee Delete Operation -->
+    <resultMap id="DeleteEmp" type="kds.poc.com.inswave.cvt.vo.EmpVo"/>
+    <delete id="DeleteEmp" parameterType="kds.poc.com.inswave.cvt.vo.EmpVo">
+        DELETE FROM EMP 
+        WHERE EMPNO = #{empno}
+    </delete>
+
+    <!-- Employee Select Operation -->
+    <resultMap id="SelectEmp" type="kds.poc.com.inswave.cvt.vo.EmpVo">
+        <result property="empno" column="EMPNO"/>
+        <result property="ename" column="ENAME"/>
+        <result property="job" column="JOB"/>
+        <result property="mgr" column="MGR"/>
+        <result property="hiredate" column="HIREDATE"/>
+        <result property="sal" column="SAL"/>
+        <result property="comm" column="COMM"/>
+        <result property="deptno" column="DEPTNO"/>
+        <result property="account" column="ACCOUNT"/>
+    </resultMap>
+
+    <select id="SelectEmp" parameterType="kds.poc.com.inswave.cvt.vo.EmpVo" resultMap="SelectEmp">
+        SELECT 
+            EMPNO,
+            ENAME,
+            JOB,
+            MGR,
+            HIREDATE,
+            SAL,
+            COMM,
+            DEPTNO,
+            ACCOUNT
+        FROM EMP
+        <where>
+            <if test="EMPNO != null">AND EMPNO = #{EMPNO}</if>
+            <if test="ENAME != null">AND ENAME LIKE '%' || #{ENAME} || '%'</if>
+            <if test="JOB != null">AND JOB = #{JOB}</if>
+            <if test="DEPTNO != null">AND DEPTNO = #{DEPTNO}</if>
+        </where>
+        ORDER BY EMPNO
+    </select>
+
+</mapper> 

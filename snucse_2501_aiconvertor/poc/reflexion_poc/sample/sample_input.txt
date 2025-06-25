@@ -1,0 +1,261 @@
+Value object:
+```
+// EmpVo.java
+package kds.poc.com.inswave.cvt.vo;
+
+import com.inswave.elfw.annotation.ElDto;
+import com.inswave.elfw.annotation.ElDtoField;
+import com.inswave.elfw.annotation.ElVoField;
+import com.fasterxml.jackson.annotation.JsonFilter;
+
+@JsonFilter("elExcludeFilter")
+@ElDto(FldYn = "", logicalName = "사원정보")
+public class EmpVo extends com.inswave.eladmin.cmmn.DemoCommVO {
+    private static final long serialVersionUID = 1L;
+
+    @ElDtoField(logicalName = "사번", physicalName = "empno", type = "String", typeKind = "", fldYn = "", length = 0, dotLen = 0, baseValue = "", desc = "")
+    private String empno;
+
+    @ElDtoField(logicalName = "성명", physicalName = "ename", type = "String", typeKind = "", fldYn = "", length = 0, dotLen = 0, baseValue = "", desc = "")
+    private String ename;
+
+    @ElDtoField(logicalName = "직업", physicalName = "job", type = "String", typeKind = "", fldYn = "", length = 0, dotLen = 0, baseValue = "", desc = "")
+    private String job;
+
+    @ElDtoField(logicalName = "직속상관", physicalName = "mgr", type = "String", typeKind = "", fldYn = "", length = 0, dotLen = 0, baseValue = "", desc = "")
+    private String mgr;
+
+    @ElDtoField(logicalName = "입사일", physicalName = "hiredate", type = "String", typeKind = "", fldYn = "", length = 0, dotLen = 0, baseValue = "", desc = "")
+    private String hiredate;
+
+    @ElDtoField(logicalName = "급여", physicalName = "sal", type = "String", typeKind = "", fldYn = "", length = 0, dotLen = 0, baseValue = "", desc = "")
+    private String sal;
+
+    @ElDtoField(logicalName = "상여", physicalName = "comm", type = "String", typeKind = "", fldYn = "", length = 0, dotLen = 0, baseValue = "", desc = "")
+    private String comm;
+
+    @ElDtoField(logicalName = "부서번호", physicalName = "deptno", type = "String", typeKind = "", fldYn = "", length = 0, dotLen = 0, baseValue = "", desc = "")
+    private String deptno;
+
+    @ElDtoField(logicalName = "계정", physicalName = "account", type = "String", typeKind = "", fldYn = "", length = 0, dotLen = 0, baseValue = "", desc = "")
+    private String account;
+
+    @ElVoField(physicalName = "empno")
+    public String getEmpno() {
+        return empno;
+    }
+
+    @ElVoField(physicalName = "empno")
+    public void setEmpno(String empno) {
+        this.empno = empno;
+    }
+
+    @ElVoField(physicalName = "ename")
+    public String getEname() {
+        return ename;
+    }
+
+    @ElVoField(physicalName = "ename")
+    public void setEname(String ename) {
+        this.ename = ename;
+    }
+
+    @ElVoField(physicalName = "job")
+    public String getJob() {
+        return job;
+    }
+
+    @ElVoField(physicalName = "job")
+    public void setJob(String job) {
+        this.job = job;
+    }
+
+    @ElVoField(physicalName = "mgr")
+    public String getMgr() {
+        return mgr;
+    }
+
+    @ElVoField(physicalName = "mgr")
+    public void setMgr(String mgr) {
+        this.mgr = mgr;
+    }
+
+    @ElVoField(physicalName = "hiredate")
+    public String getHiredate() {
+        return hiredate;
+    }
+
+    @ElVoField(physicalName = "hiredate")
+    public void setHiredate(String hiredate) {
+        this.hiredate = hiredate;
+    }
+
+    @ElVoField(physicalName = "sal")
+    public String getSal() {
+        return sal;
+    }
+
+    @ElVoField(physicalName = "sal")
+    public void setSal(String sal) {
+        this.sal = sal;
+    }
+
+    @ElVoField(physicalName = "comm")
+    public String getComm() {
+        return comm;
+    }
+
+    @ElVoField(physicalName = "comm")
+    public void setComm(String comm) {
+        this.comm = comm;
+    }
+
+    @ElVoField(physicalName = "deptno")
+    public String getDeptno() {
+        return deptno;
+    }
+
+    @ElVoField(physicalName = "deptno")
+    public void setDeptno(String deptno) {
+        this.deptno = deptno;
+    }
+
+    @ElVoField(physicalName = "account")
+    public String getAccount() {
+        return account;
+    }
+
+    @ElVoField(physicalName = "account")
+    public void setAccount(String account) {
+        this.account = account;
+    }
+
+    @Override
+    public String toString() {
+        return "EmpVo [empno=" + empno + ", ename=" + ename + ", job=" + job +
+            ", mgr=" + mgr + ", hiredate=" + hiredate + ", sal=" + sal +
+            ", comm=" + comm + ", deptno=" + deptno + ", account=" + account + "]";
+    }
+
+    public boolean isFixedLengthVo() {
+        return false;
+    }
+}
+```
+
+Additional contexts:
+```
+// CvtDAO.java
+package kds.poc.com.inswave.cvt.dao;
+
+import java.util.ArrayList;
+import java.util.Map;
+import org.springframework.stereotype.Repository;
+import com.inswave.elfw.exception.ElException;
+import kds.poc.base.cmmn.dao.BaseDefaultAbstractDAO;
+import src.main.java.vo.EmpVo;
+
+/**
+ * @ClassSubJect DAO convert
+ * @Class Name : CvtDAO
+ * @ConvertTime : 2021-09-23 13:05:54
+ * @Description :
+ *
+ *  Copyright Inswave (C) by Sampler All right reserved.
+ */
+@Repository("cvtDAO")
+public class CvtDAO extends BaseDefaultAbstractDAO {
+
+    public int InsertEmp(EmpVo mp) throws ElException;
+
+    public int UpdateEmp(EmpVo mp) throws ElException;
+
+    public int DeleteEmp(EmpVo mp) throws ElException;
+
+    public ArrayList<EmpVo> SelectEmp(EmpVo mp) throws ElException;
+}
+```
+
+Previous implementation (to convert to VO-based implementation):
+```
+// SampleTaskServiceImpl.java
+
+import java.util.ArrayList;
+
+import java.util.Map;
+
+import javax.annotation.Resource;
+
+import org.springframework.stereotype.Service;
+
+import kds.poc.com.inswave.cvt.service.SampleTaskService;
+
+@Service("sampleTaskServiceImpl")
+public class SampleTaskServiceImpl implements SampleTaskService {
+
+    // (샘플) SELECT EMPNO, ENAME, JOB, MGR, HIREDATE, SAL, COMM, DEPTNO, ACCOUNT FROM EMP
+    public Object selectEmpXDA(Map doc) throws Exception {
+        Object result = null;
+        //XDA xda = null;
+        try {
+            //xda = XDAFactory.getXDA("default", Constants.KEEP_CONNECTION) ---> (해당 라인의 소스는 변환을 지원하지 않습니다.);
+            result = cvtDAO.SelectEmp(doc);
+        } catch (Exception e) {
+            throw e;
+        }
+        return result;
+    }
+
+    // (샘플) INSERT INTO EMP (EMPNO, ENAME, JOB, MGR, HIREDATE, SAL, COMM, DEPTNO, ACCOUNT) VALUES(5000, '김일', '사원', 8000, sysdate, 3000, 0, 10, 0)
+    public Object insertEmpXDA(Map doc) throws Exception {
+        Object result = null;
+        //XDA xda = null;
+        try {
+            //xda = XDAFactory.getXDA("default", Constants.KEEP_CONNECTION) ---> (해당 라인의 소스는 변환을 지원하지 않습니다.);
+            doc.put("EMPNO", 5000);
+            doc.put("ENAME", "김일");
+            doc.put("JOB", "사원");
+            doc.put("MGR", 8000);
+            doc.put("SAL", 3000);
+            doc.put("COMM", 0);
+            doc.put("DEPTNO", 10);
+            doc.put("ACCOUNT", 0);
+            result = cvtDAO.InsertEmp(doc);
+        } catch (Exception e) {
+            throw e;
+        }
+        return result;
+    }
+
+    // (샘플) UPDATE EMP SET JOB='대리', SAL=6000 WHERE EMPNO = 5000 AND ENAME = '김일'
+    public void updateEmpXDA(Map doc) throws Exception {
+        Object result = null;
+        //XDA xda = null;
+        try {
+            //xda = XDAFactory.getXDA("default", Constants.KEEP_CONNECTION) ---> (해당 라인의 소스는 변환을 지원하지 않습니다.);
+            doc.put("EMPNO", "5000");
+            doc.put("ENAME", "김일");
+            result = cvtDAO.UpdateEmp(doc);
+        } catch (Exception e) {
+            throw e;
+        }
+    }
+
+    // (샘플) DELETE FROM EMP WHERE EMPNO = 5000 AND ENAME = '김일'
+    public void deleteEmpXDA(Map doc) throws Exception {
+        Object result = null;
+        //XDA xda = null;
+        try {
+            //xda = XDAFactory.getXDA("default", Constants.KEEP_CONNECTION) ---> (해당 라인의 소스는 변환을 지원하지 않습니다.);
+            doc.put("EMPNO", 5000);
+            doc.put("ENAME", "김일");
+            result = cvtDAO.DeleteEmp(doc);
+        } catch (Exception e) {
+            throw e;
+        }
+    }
+
+    @Resource(name = "cvtDAO")
+    private kds.poc.com.inswave.cvt.dao.CvtDAO cvtDAO;
+}
+```

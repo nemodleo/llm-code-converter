@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.inswave.cvt">
+    
+    <!-- Select Department -->
+    <select id="SelectDept" parameterType="kds.poc.com.inswave.cvt.vo.DeptVo" 
+            resultType="kds.poc.com.inswave.cvt.vo.DeptVo">
+        SELECT 
+            DEPTNO as deptNo,
+            DNAME as deptName,
+            LOC as location
+        FROM DEPT
+        <where>
+            <if test="deptNo != null">
+                DEPTNO = #{deptNo}
+            </if>
+            <if test="deptName != null and deptName != ''">
+                AND DNAME LIKE '%' || #{deptName} || '%'
+            </if>
+            <if test="location != null and location != ''">
+                AND LOC = #{location}
+            </if>
+        </where>
+    </select>
+
+    <!-- Select Department with Employees -->
+    <select id="SelectDeptWithEmps" parameterType="kds.poc.com.inswave.cvt.vo.EmpVo" 
+            resultType="kds.poc.com.inswave.cvt.vo.DeptVo">
+        SELECT DISTINCT
+            d.DEPTNO as deptNo,
+            d.DNAME as deptName,
+            d.LOC as location
+        FROM DEPT d
+        INNER JOIN EMP e ON d.DEPTNO = e.DEPTNO
+        <where>
+            <if test="empNo != null">
+                e.EMPNO = #{empNo}
+            </if>
+            <if test="empName != null and empName != ''">
+                AND e.ENAME LIKE '%' || #{empName} || '%'
+            </if>
+            <if test="job != null and job != ''">
+                AND e.JOB = #{job}
+            </if>
+            <if test="salary != null">
+                AND e.SAL >= #{salary}
+            </if>
+            <if test="deptNo != null">
+                AND e.DEPTNO = #{deptNo}
+            </if>
+        </where>
+    </select>
+
+    <!-- Insert Department -->
+    <insert id="InsertDept" parameterType="kds.poc.com.inswave.cvt.vo.DeptVo">
+        INSERT INTO DEPT (
+            DEPTNO,
+            DNAME,
+            LOC
+        ) VALUES (
+            #{deptNo},
+            #{deptName},
+            #{location}
+        )
+    </insert>
+
+    <!-- Update Department -->
+    <update id="UpdateDept" parameterType="kds.poc.com.inswave.cvt.vo.DeptVo">
+        UPDATE DEPT
+        <set>
+            <if test="deptName != null and deptName != ''">
+                DNAME = #{deptName},
+            </if>
+            <if test="location != null and location != ''">
+                LOC = #{location}
+            </if>
+        </set>
+        WHERE DEPTNO = #{deptNo}
+    </update>
+
+    <!-- Delete Department -->
+    <delete id="DeleteDept" parameterType="kds.poc.com.inswave.cvt.vo.DeptVo">
+        DELETE FROM DEPT
+        WHERE DEPTNO = #{deptNo}
+    </delete>
+</mapper> 

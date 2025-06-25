@@ -1,0 +1,21 @@
+
+spring:
+  datasource:
+    url: jdbc:h2:mem:cvt;MODE=Oracle;DB_CLOSE_DELAY=-1;DATABASE_TO_UPPER=false
+    driver-class-name: org.h2.Driver   # same, just older JAR
+    username: sa
+    password: 
+  h2:
+    console.enabled: true          # http://localhost:8080/h2-console
+  
+  sql:
+    init:
+      mode: always
+      schema-locations: classpath:schema.sql
+      data-locations:   # you can also leave this out if it’s just data.sql
+        - classpath:data.sql
+
+mybatis:
+  mapper-locations: classpath:/mapper/*.xml
+  configuration:
+    map-underscore-to-camel-case: true

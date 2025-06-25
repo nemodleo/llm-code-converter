@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?><!--Converted at: Thu Sep 23 13:05:59 KST 2021-->
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kds.poc.cvt.mapper.EmpMapper">
+
+<!-- [1]/[4] ********** id=com.inswave.cvt.InsertEmp ********** -->
+    <resultMap id="insertEmp" type="map"/>
+    <insert id="insertEmp" parameterType="map">
+        INSERT INTO EMP (
+            EMPNO, ENAME, JOB, MGR, HIREDATE, SAL, COMM, DEPTNO, ACCOUNT
+        ) VALUES (
+            #{EMPNO}, #{ENAME}, #{JOB}, #{MGR}, sysdate, #{SAL}, #{COMM}, #{DEPTNO}, #{ACCOUNT}
+        )
+    </insert>
+
+<!-- [2]/[4] ********** id=com.inswave.cvt.UpdateEmp ********** -->
+    <resultMap id="updateEmp" type="map"/>
+    <update id="updateEmp" parameterType="map">
+        UPDATE EMP 
+        SET 
+            JOB = #{JOB},
+            SAL = #{SAL},
+            MGR = #{MGR},
+            HIREDATE = #{HIREDATE},
+            COMM = #{COMM},
+            DEPTNO = #{DEPTNO},
+            ACCOUNT = #{ACCOUNT}
+        WHERE EMPNO = #{EMPNO}
+        <if test="ENAME != null and ENAME != ''">
+            AND ENAME = #{ENAME}
+        </if>
+    </update>
+
+<!-- [3]/[4] ********** id=com.inswave.cvt.DeleteEmp ********** -->
+    <resultMap id="deleteEmp" type="map"/>
+    <delete id="deleteEmp" parameterType="map">
+        DELETE FROM EMP 
+        WHERE EMPNO = #{EMPNO}
+        <if test="ENAME != null and ENAME != ''">
+            AND ENAME = #{ENAME}
+        </if>
+    </delete>
+
+<!-- [4]/[4] ********** id=com.inswave.cvt.SelectEmp ********** -->
+    <resultMap id="selectEmp" type="map">
+        <result property="EMPNO" column="EMPNO"/>
+        <result property="ENAME" column="ENAME"/>
+        <result property="JOB" column="JOB"/>
+        <result property="MGR" column="MGR"/>
+        <result property="HIREDATE" column="HIREDATE"/>
+        <result property="SAL" column="SAL"/>
+        <result property="COMM" column="COMM"/>
+        <result property="DEPTNO" column="DEPTNO"/>
+        <result property="ACCOUNT" column="ACCOUNT"/>
+    </resultMap>
+    <select id="selectEmp" parameterType="map" resultType="map">
+        SELECT 
+            EMPNO,
+            ENAME,
+            JOB,
+            MGR,
+            HIREDATE,
+            SAL,
+            COMM,
+            DEPTNO,
+            ACCOUNT
+        FROM EMP
+        <where>
+            <if test="EMPNO != null and EMPNO != ''">
+                AND EMPNO = #{EMPNO}
+            </if>
+            <if test="ENAME != null and ENAME != ''">
+                AND ENAME LIKE '%' || #{ENAME} || '%'
+            </if>
+            <if test="JOB != null and JOB != ''">
+                AND JOB = #{JOB}
+            </if>
+            <if test="DEPTNO != null and DEPTNO != ''">
+                AND DEPTNO = #{DEPTNO}
+            </if>
+        </where>
+        ORDER BY EMPNO ASC
+    </select>
+
+
+</mapper>

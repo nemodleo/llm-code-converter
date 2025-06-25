@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.inswave.cvt">
+
+    <resultMap id="DeptVoMap" type="kds.poc.com.inswave.cvt.vo.DeptVo">
+        <id property="deptNo" column="DEPTNO"/>
+        <result property="deptName" column="DNAME"/>
+        <result property="location" column="LOC"/>
+        <result property="budget" column="BUDGET"/>
+    </resultMap>
+
+    <!-- [1]/[5] ********** id=com.inswave.cvt.InsertDept ********** -->
+    <insert id="InsertDept" parameterType="kds.poc.com.inswave.cvt.vo.DeptVo">
+        INSERT INTO DEPT (DEPTNO, DNAME, LOC, BUDGET) 
+        VALUES (#{deptNo}, #{deptName}, #{location}, #{budget})
+    </insert>
+
+    <!-- [2]/[5] ********** id=com.inswave.cvt.UpdateDept ********** -->
+    <update id="UpdateDept" parameterType="kds.poc.com.inswave.cvt.vo.DeptVo">
+        UPDATE DEPT 
+        SET DNAME = #{deptName},
+            LOC = #{location},
+            BUDGET = #{budget}
+        WHERE DEPTNO = #{deptNo}
+    </update>
+
+    <!-- [3]/[5] ********** id=com.inswave.cvt.DeleteDept ********** -->
+    <delete id="DeleteDept" parameterType="kds.poc.com.inswave.cvt.vo.DeptVo">
+        DELETE FROM DEPT WHERE DEPTNO = #{deptNo}
+    </delete>
+
+    <!-- [4]/[5] ********** id=com.inswave.cvt.SelectDept ********** -->
+    <select id="SelectDept" parameterType="kds.poc.com.inswave.cvt.vo.DeptVo" 
+            resultMap="DeptVoMap">
+        SELECT DEPTNO, DNAME, LOC, BUDGET 
+        FROM DEPT
+        <where>
+            <if test="deptNo != null">
+                DEPTNO = #{deptNo}
+            </if>
+            <if test="deptName != null and deptName != ''">
+                AND DNAME LIKE '%' || #{deptName} || '%'
+            </if>
+            <if test="location != null and location != ''">
+                AND LOC = #{location}
+            </if>
+        </where>
+    </select>
+
+    <!-- [5]/[5] ********** id=com.inswave.cvt.SelectDeptWithEmps ********** -->
+    <select id="SelectDeptWithEmps" parameterType="kds.poc.com.inswave.cvt.vo.EmpVo"
+            resultMap="DeptVoMap">
+        SELECT DISTINCT d.DEPTNO, d.DNAME, d.LOC, d.BUDGET
+        FROM DEPT d
+        INNER JOIN EMP e ON d.DEPTNO = e.DEPTNO
+        <where>
+            <if test="empNo != null">
+                e.EMPNO = #{empNo}
+            </if>
+            <if test="empName != null and empName != ''">
+                AND e.ENAME LIKE '%' || #{empName} || '%'
+            </if>
+            <if test="job != null and job != ''">
+                AND e.JOB = #{job}
+            </if>
+            <if test="salary != null">
+                AND e.SAL >= #{salary}
+            </if>
+            <if test="deptNo != null">
+                AND e.DEPTNO = #{deptNo}
+            </if>
+        </where>
+    </select>
+
+</mapper>

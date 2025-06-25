@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kds.poc.cvt.mapper.FundMapper">
+
+    <!-- Fund 기본 CRUD -->
+    <insert id="insertFund" parameterType="kds.poc.cvt.model.FundVo">
+        INSERT INTO FUND (
+            FUND_CODE, FUND_NAME, FUND_TYPE, MANAGER, NAV, 
+            TOTAL_ASSETS, EXPENSE_RATIO, INCEPTION_DATE, RISK_LEVEL, 
+            STATUS, DESCRIPTION, LAST_UPDATE
+        ) VALUES (
+            #{fundCode}, #{fundName}, #{fundType}, #{manager}, #{nav},
+            #{totalAssets}, #{expenseRatio}, #{inceptionDate}, #{riskLevel},
+            #{status}, #{description}, #{lastUpdate}
+        )
+    </insert>
+
+    <update id="updateFund" parameterType="kds.poc.cvt.model.FundVo">
+        UPDATE FUND SET
+            FUND_NAME = #{fundName},
+            FUND_TYPE = #{fundType},
+            MANAGER = #{manager},
+            NAV = #{nav},
+            TOTAL_ASSETS = #{totalAssets},
+            EXPENSE_RATIO = #{expenseRatio},
+            INCEPTION_DATE = #{inceptionDate},
+            RISK_LEVEL = #{riskLevel},
+            STATUS = #{status},
+            DESCRIPTION = #{description},
+            LAST_UPDATE = #{lastUpdate}
+        WHERE FUND_CODE = #{fundCode}
+    </update>
+
+    <delete id="deleteFund" parameterType="kds.poc.cvt.model.FundVo">
+        DELETE FROM FUND WHERE FUND_CODE = #{fundCode}
+    </delete>
+
+    <select id="selectFund" parameterType="kds.poc.cvt.model.FundVo" resultType="kds.poc.cvt.model.FundVo">
+        SELECT 
+            FUND_CODE as fundCode,
+            FUND_NAME as fundName,
+            FUND_TYPE as fundType,
+            MANAGER as manager,
+            NAV as nav,
+            TOTAL_ASSETS as totalAssets,
+            EXPENSE_RATIO as expenseRatio,
+            INCEPTION_DATE as inceptionDate,
+            RISK_LEVEL as riskLevel,
+            STATUS as status,
+            DESCRIPTION as description,
+            LAST_UPDATE as lastUpdate
+        FROM FUND
+        <where>
+            <if test="fundCode != null and fundCode != ''">
+                AND FUND_CODE = #{fundCode}
+            </if>
+            <if test="fundName != null and fundName != ''">
+                AND FUND_NAME LIKE '%' || #{fundName} || '%'
+            </if>
+            <if test="fundType != null and fundType != ''">
+                AND FUND_TYPE = #{fundType}
+            </if>
+            <if test="manager != null and manager != ''">
+                AND MANAGER = #{manager}
+            </if>
+            <if test="riskLevel != null and riskLevel != ''">
+                AND RISK_LEVEL = #{riskLevel}
+            </if>
+            <if test="status != null and status != ''">
+                AND STATUS = #{status}
+            </if>
+        </where>
+        ORDER BY FUND_CODE
+    </select>
+
+    <select id="selectFundByCode" parameterType="string" resultType="kds.poc.cvt.model.FundVo">
+        SELECT 
+            FUND_CODE as fundCode,
+            FUND_NAME as fundName,
+            FUND_TYPE as fundType,
+            MANAGER as manager,
+            NAV as nav,
+            TOTAL_ASSETS as totalAssets,
+            EXPENSE_RATIO as expenseRatio,
+            INCEPTION_DATE as inceptionDate,
+            RISK_LEVEL as riskLevel,
+            STATUS as status,
+            DESCRIPTION as description,
+            LAST_UPDATE as lastUpdate
+        FROM FUND
+        WHERE FUND_CODE = #{fundCode}
+    </select>
+
+    <!-- Fund Performance 관련 -->
+    <insert id="insertFundPerformance" parameterType="kds.poc.cvt.model.FundPerformanceVo">
+        INSERT INTO FUND_PERFORMANCE (
+            FUND_CODE, DATE, NAV, DAILY_RETURN, WEEKLY_RETURN,
+            MONTHLY_RETURN, YEARLY_RETURN, TOTAL_RETURN,
+            BENCHMARK_RETURN, SHARPE_RATIO, VOLATILITY, MAX_DRAWDOWN
+        ) VALUES (
+            #{fundCode}, #{date}, #{nav}, #{dailyReturn}, #{weeklyReturn},
+            #{monthlyReturn}, #{yearlyReturn}, #{totalReturn},
+            #{benchmarkReturn}, #{sharpeRatio}, #{volatility}, #{maxDrawdown}
+        )
+    </insert>
+
+    <select id="selectFundPerformance" parameterType="string" resultType="kds.poc.cvt.model.FundPerformanceVo">
+        SELECT 
+            FUND_CODE as fundCode,
+            DATE as date,
+            NAV as nav,
+            DAILY_RETURN as dailyReturn,
+            WEEKLY_RETURN as weeklyReturn,
+            MONTHLY_RETURN as monthlyReturn,
+            YEARLY_RETURN as yearlyReturn,
+            TOTAL_RETURN as totalReturn,
+            BENCHMARK_RETURN as benchmarkReturn,
+            SHARPE_RATIO as sharpeRatio,
+            VOLATILITY as volatility,
+            MAX_DRAWDOWN as maxDrawdown
+        FROM FUND_PERFORMANCE
+        WHERE FUND_CODE = #{fundCode}
+        ORDER BY DATE DESC
+    </select>
+
+    <select id="selectFundPerformanceByDateRange" resultType="kds.poc.cvt.model.FundPerformanceVo">
+        SELECT 
+            FUND_CODE as fundCode,
+            DATE as date,
+            NAV as nav,
+            DAILY_RETURN as dailyReturn,
+            WEEKLY_RETURN as weeklyReturn,
+            MONTHLY_RETURN as monthlyReturn,
+            YEARLY_RETURN as yearlyReturn,
+            TOTAL_RETURN as totalReturn,
+            BENCHMARK_RETURN as benchmarkReturn,
+            SHARPE_RATIO as sharpeRatio,
+            VOLATILITY as volatility,
+            MAX_DRAWDOWN as maxDrawdown
+        FROM FUND_PERFORMANCE
+        WHERE FUND_CODE = #{fundCode}
+        AND DATE BETWEEN #{startDate} AND #{endDate}
+        ORDER BY DATE DESC
+    </select>
+
+</mapper> 

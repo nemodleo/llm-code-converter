@@ -1,0 +1,25 @@
+# Comments
+
+Input: }
+Output: }
+
+Input: import javax.annotation.Resource;
+Output: import javax.annotation.Resource;
+
+Input: String x = map.get("BAR");
+Output: String x = map.getBar();
+
+Input: map.put("BAZ", someValue);
+Output: map.setBaz(someValue);
+
+Input: ArrayList<Map> result = null;
+Output: ArrayList<SecuritiesInqrPritMgmtVo> result = null;
+
+Input: MapDataUtil.setString(pDoc, "TRNS_DATE_FROM", trnsDateFrom);
+Output: pDoc.setTrnsDateFrom(trnsDateFrom);
+
+Input: MapDataUtil.setBigDecimal(result, "ACML_PRRT", acmlPrrt);
+Output: result.setAcmlPrrt(acmlPrrt);
+
+Input: MapDataUtil.setString(pDoc, "ESTB_BANK_TRNS_BRCD2", MapDataUtil.getString(pDoc, "ESTB_BANK_TRNS_BRCD"));
+Output: pDoc.setEstbBankTrnsBrcd2(pDoc.getEstbBankTrnsBrcd());

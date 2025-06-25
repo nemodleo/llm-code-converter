@@ -1,84 +1,109 @@
 // Content data for the website
 const content = {
     abstract: `
-        <p>인스웨이브 사의 Java 프레임워크인 Proworks 4에서 Proworks 5로의 마이그레이션 과정은 현재 수작업에 의존하고 있어 작업 효율이 낮고, 코드 오류 발생 가능성이 높다는 문제를 안고 있다. 본 프로젝트는 이러한 문제를 해결하기 위해 <strong>LLM 기반의 코드 변환 자동화 도구</strong>를 개발하는 것을 목표로 한다.</p>
-        <p>이를 위해 세 가지 핵심 모듈을 설계하고 구현하였다: (1) <strong>Dependency Analysis 모듈</strong>은 정적 분석 기반의 Call Graph Parsing을 통해 Proworks 5에서 요구하는 데이터 클래스와 스켈레톤 코드를 자동으로 생성한다. (2) <strong>Code Conversion 모듈</strong>은 LLM을 활용하여 레거시 코드를 신규 API에 맞게 자동 변환하며, RAG 기법을 통해 변환 정확도를 향상시킨다. (3) <strong>Self-Refinement 모듈</strong>은 Reflexion 기법을 기반으로 LLM이 자신의 출력을 분석·피드백하여 점진적으로 코드의 완성도를 높인다.</p>
-        <p>이러한 세 모듈의 통합을 통해 수작업 대비 <strong>50% 이상의 자동 변환 정확도</strong>를 달성하였으며, 전체적인 마이그레이션 리소스를 크게 절감할 수 있었다.</p>
+        <p>인스웨이브(Inswave)사의 Java 프레임워크 'Proworks 4'를 'Proworks 5'로 마이그레이션하는 작업은 현재 수작업 의존도가 높아 비효율적이며, 오류 발생 가능성이 크다는 문제를 안고 있습니다. 본 프로젝트는 이러한 문제를 해결하기 위해 <strong>LLM(거대 언어 모델) 기반의 코드 변환 자동화 도구</strong>를 개발하는 것을 목표로 합니다.</p>
+        <p>이를 위해 세 가지 핵심 모듈을 설계 및 구현했습니다: (1) <strong>의존성 분석(Dependency Analysis) 모듈</strong>은 정적 분석과 호출 그래프 파싱(Call Graph Parsing)을 통해 Proworks 5에서 요구하는 데이터 클래스(VO)와 스켈레톤 코드를 자동으로 생성합니다. (2) <strong>코드 변환(Code Conversion) 모듈</strong>은 LLM을 활용해 레거시 코드를 변환하며, RAG(검색 증강 생성) 기법으로 Proworks 5 공식 문서를 참조하여 변환 정확도를 극대화합니다. (3) <strong>자가 개선(Self-Refinement) 모듈</strong>은 Reflexion 기법을 기반으로, LLM이 스스로 생성한 코드의 오류를 분석하고 피드백을 통해 점진적으로 완성도를 높입니다.</p>
+        <p>실험 결과, 제안된 파이프라인(RAG + Reflexion)은 <strong>최종 변환 정확도 99%</strong>를 달성했으며 , 이는 기존 규칙 기반(Rule-based) 변환기 대비 <strong>약 20%p 높은 성능</strong>입니다. 이를 통해 마이그레이션 리소스를 크게 절감하고 코드 품질을 향상시킬 수 있음을 입증했습니다.</p>
     `,
 
     introduction: `
-        <p>기업용 애플리케이션 개발에 특화된 인스웨이브 사의 Java 기반 프레임워크인 Proworks는 안정적인 백엔드 구축과 운영을 위해 다양한 기능을 제공하고 있다. 최근 출시된 Proworks 5는 이전 버전인 Proworks 4에 비해 API 확장, 인터페이스 정비, 성능 개선, 유지보수 편의성 등 다방면에서 향상된 기능을 포함하고 있다.</p>
+        <p>기업용 애플리케이션 개발에 특화된 Java 프레임워크인 Proworks는 안정적인 백엔드 구축을 위한 다양한 기능을 제공합니다. 최신 버전인 Proworks 5는 성능과 유지보수 편의성이 대폭 향상되었으나, 코드 구조의 근본적인 변화로 인해 Proworks 4에서의 마이그레이션에 높은 기술적, 관리적 부담이 발생하고 있습니다.</p>
         
         <h3>1.1 Problem Statement</h3>
-        <p>현재 Proworks 4에서 5로의 마이그레이션 과정에서 다음과 같은 주요 문제점들이 발견되었다:</p>
+        <p>현행 마이그레이션 과정의 주요 문제점(Pain Points)은 다음과 같습니다:</p>
         <ul class="problem-list">
-            <li><strong>규칙 기반 변환의 한계:</strong> 기존 마이그레이션 작업은 정해진 치환 규칙을 기반으로 이루어지며, 실환경의 다양한 코드 스타일과 예외 상황을 포괄하지 못한다.</li>
-            <li><strong>문맥 기반 구조적 변환의 비효율성:</strong> 복수의 MAP 객체를 하나의 VO 객체로 통합하는 등의 고차원적 변환에 기존 시스템은 대응하지 못한다.</li>
-            <li><strong>과도한 수작업 의존성:</strong> 변환 실패 시 복구 자동화가 불가능하고, 모든 실패 구간을 개발자가 수작업으로 보완해야 한다.</li>
+            <li><strong>규칙 기반 변환의 구조적 한계:</strong> 기존 규칙 기반 방식은 정해진 패턴 외에 다양한 코드 스타일이나 예외 상황을 처리하지 못하여 수작업 개입이 불가피합니다.</li>
+            <li><strong>문맥 기반 구조 변환의 비효율성:</strong> 여러 Map 객체를 하나의 VO(Value Object)로 통합하는 등, 코드의 의미적 이해가 필요한 고차원적 변환에 대응하기 어렵습니다.</li>
+            <li><strong>과도한 수작업 의존성:</strong> 변환 실패 시 자동화된 복구 절차가 없고, 변환 후 검수 과정 또한 많은 리소스를 소모하여 전체 프로젝트의 일정 지연과 품질 저하를 야기합니다.</li>
         </ul>
     `,
 
     method: `
-        <p>본 프로젝트는 LLM의 코드 이해 및 생성 능력을 활용하여 Proworks 버전 간의 문법적·구조적 차이를 자동으로 변환하는 시스템을 제안한다. 단순한 정규표현식 기반의 치환을 넘어서, 다대다 매핑이 포함된 고차원적인 구조 변환을 자동화하는 것을 지향한다.</p>
+        <p>본 프로젝트는 단순한 정규표현식 기반의 치환을 넘어, 코드의 구조적·문맥적 의미를 이해하여 고차원적인 변환을 자동화하는 것을 목표로 합니다. 이를 위해 전체 변환 과정을 여러 단계로 나누는 계획 기반 접근 방식(Planning Approach)을 채택했습니다. 먼저 호출 그래프(Callgraph) 분석을 통해 스켈레톤 코드를 생성한 후, LLM이 각 함수의 내부 로직을 채우는 방식으로 진행하여 LLM의 환각(Hallucination) 문제를 줄이고 변환의 안정성을 높였습니다.</p>
     `,
 
     methodDetails: `
-        <h3>2.1 Implementation Architecture</h3>
-        <p>전체 시스템은 FastAPI 기반의 RESTful 서버로 구성되었으며, LLM 서빙과 클라이언트 요청 간의 통신을 효율적으로 처리하도록 설계되었다. 사용자 인터페이스는 VS Code 확장 기능 형태로 구현되었으며, 기존의 llm-vscode 오픈소스 프로젝트를 참고하여 프로젝트 요구에 맞는 사용자 경험을 설계하였다.</p>
-    `,
-
-    implementation: `
-        <h3>3.1 Development Environment</h3>
-        <p>본 프로젝트는 기업 보안 정책을 고려하여 로컬 환경에서 실행 가능한 구조로 설계되었다.</p>
+        <h3>2.1 Development Environment & Constraints</h3>
+        <p>기업의 보안 정책을 준수하기 위해 외부 클라우드 API 없이 로컬 환경에서 모든 기능이 실행되도록 시스템을 설계했습니다.</p>
         <div class="tech-stack">
-            <span class="tech-tag">Python</span>
+            <span class="tech-tag">Python 3.10</span>
+            <span class="tech-tag">Java 1.8</span>
             <span class="tech-tag">FastAPI</span>
             <span class="tech-tag">Ollama</span>
-            <span class="tech-tag">FAISS</span>
+            <span class="tech-tag">FAISS (RAG)</span>
             <span class="tech-tag">Tree-sitter</span>
         </div>
-
-        <h3>3.2 Key Features</h3>
         <div class="solution-highlights">
             <ul>
-                <li><strong>로컬 환경 지원:</strong> 기업 보안 정책에 따른 폐쇄망 환경에서도 완전 작동</li>
-                <li><strong>VS Code 확장:</strong> 개발자 친화적인 사용자 인터페이스 제공</li>
-                <li><strong>상업적 라이선스:</strong> 모든 구성 요소가 기업용으로 사용 가능</li>
-                <li><strong>GPU 효율성:</strong> 40GB VRAM 이하 환경에서 안정적 실행</li>
+                <li><strong>로컬 환경 구동:</strong> 인터넷 연결이 없는 폐쇄망 환경에서 완전 작동 </li>
+                <li><strong>LLM 제약사항:</strong> 별도의 LLM 학습(Fine-tuning) 없이 사용 </li>
+                <li><strong>GPU 효율성:</strong> VRAM 40GB 이하의 단일 A100 GPU 환경에서 안정적 실행 </li>
+                <li><strong>VS Code 확장 기능:</strong> 개발자 친화적인 UI/UX 제공을 위해 자체 구현 </li>
             </ul>
         </div>
-
-        <h3>3.3 Architecture Components</h3>
-        <p>전체 시스템은 FastAPI 기반의 RESTful 서버로 구성되었으며, LLM 서빙과 클라이언트 요청 간의 통신을 효율적으로 처리하도록 설계되었다. 사용자 인터페이스는 VS Code 확장 기능 형태로 구현되었으며, 기존의 llm-vscode 오픈소스 프로젝트를 참고하여 프로젝트 요구에 맞는 사용자 경험을 설계하였다.</p>
     `,
 
-    results: `
-        <p>본 시스템의 성능을 평가하기 위해 일반 평가용 코드(약 100줄, 4-5개 파일)와 고급 평가용 코드(약 1000줄)를 사용하여 실험을 수행하였다.</p>
-        
-        <h3>4.1 Evaluation Methodology</h3>
-        <p>평가는 Exact Match Score를 기준으로 하였으며, 변환된 코드가 기존 로직을 정확히 보존하면서 Proworks 5의 패턴을 준수하는지를 확인하였다. 또한 BLEU score와 같은 정량 지표를 활용하여 코드 품질을 객관적으로 측정하였다.</p>
+    implementation: ``,
 
-        <h3>4.2 Performance Metrics</h3>
-        <p>실험 결과, 목표로 설정한 50% 이상의 자동 변환 정확도를 달성하였으며, 특히 단순한 Map → VO 변환의 경우 80% 이상의 높은 정확도를 보였다. 복잡한 중첩 구조의 경우에도 40-60%의 변환 성공률을 기록하였다.</p>
+    results: `
+        <p>시스템의 각 모듈별 성능과 전체 파이프라인의 효율성을 검증하기 위해, 실제 사용 사례를 기반으로 구성된 4가지 카테고리의 평가 데이터셋에 대해 정량 평가를 수행했습니다. 평가는 변환된 코드가 단위 테스트를 통과하는지 여부(Unit test correctness)를 기준으로 측정했습니다.</p>
+        
+        <h3>4.1 VO Generation Performance</h3>
+        <p>Proworks 5의 핵심인 VO(Value Object) 클래스 생성 정확도를 평가한 결과, 기존 LLM(GPT-4.1)이 50%의 정확도를 보인 반면, 본 프로젝트의 <strong>의존성 분석 모듈은 100%의 정확도</strong>로 모든 테스트 케이스에서 완벽하게 VO 클래스를 생성했습니다. 이는 LLM의 환각 문제를 원천 차단하고 안정적인 변환의 기반을 마련했음을 의미합니다.</p>
+
+        <h3>4.2 Code Conversion Pipeline Performance</h3>
+        <p>코드 변환 파이프라인의 성능을 단계적으로 측정한 결과, RAG와 Reflexion 모듈이 정확도 향상에 결정적인 역할을 하는 것을 확인했습니다. (Base model: devstral:24b) </p>
+         <ul class="problem-list">
+            <li><strong>Base (LLM only):</strong> 평균 정확도 54%. 특히 API 호출(API Calls) 변환 정확도는 2%에 불과해 외부 지식 없이는 한계가 명확했습니다.</li>
+            <li><strong>Base + RAG:</strong> 평균 정확도 91%로 크게 향상. Proworks 5 문서를 참조하면서 API 호출 정확도가 98%까지 상승했으며, 문서 내 예시 코드 덕분에 다른 영역의 성능도 개선되었습니다.</li>
+            <li><strong>Base + Reflexion:</strong> 평균 정확도 69%로 향상. 피드백 루프를 통해 잘못된 패턴을 스스로 교정하는 효과가 있었습니다.</li>
+            <li><strong>Base + RAG + Reflexion (Final):</strong> <strong>평균 정확도 99%</strong>를 달성하며 대부분의 항목에서 완벽한 변환 성능을 보였습니다. 이는 두 모듈의 시너지가 매우 효과적임을 증명합니다.</li>
+        </ul>
     `,
 
     achievements: `
-        <h3>4.3 Key Achievements</h3>
-        <div class="solution-highlights">
-            <ul>
-                <li><strong>마이그레이션 시간 및 비용 대폭 절감:</strong> 기존 수작업 대비 70% 이상의 시간 단축</li>
-                <li><strong>코드 품질 및 일관성 향상:</strong> 자동화된 변환으로 인한 일관된 코딩 스타일 적용</li>
-                <li><strong>개발자 반복 작업 최소화:</strong> 단순 반복 작업에서 해방되어 고부가가치 작업에 집중 가능</li>
-                <li><strong>확장성 확보:</strong> 향후 다양한 프레임워크 전환에 적용 가능한 범용적 시스템 구축</li>
-                <li><strong>실무 적용 가능성:</strong> 실제 산업 현장에서의 검증을 통한 실용성 입증</li>
-            </ul>
+        <h3>4.3 Comparison with Baselines</h3>
+        <p>제안된 최종 파이프라인의 성능을 기존의 규칙 기반(Rule-based) 변환기와 여러 다른 LLM 모델들과 비교했습니다.</p>
+        <div class="results-table-container" style="margin-bottom: 2rem;">
+            <table class="results-table enhanced">
+                <thead>
+                    <tr>
+                        <th>Model / Method</th>
+                        <th>Avg Score</th>
+                        <th>API calls</th>
+                        <th>VO get/set</th>
+                        <th>Type Changes</th>
+                        <th>Edge cases</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Inswave-base (Rule-based)</td>
+                        <td>0.79</td>
+                        <td>0.32</td>
+                        <td>0.99</td>
+                        <td>0.98</td>
+                        <td>0.87</td>
+                    </tr>
+                    <tr class="table-row-highlight">
+                        <td><strong>Ours (devstral:24b + RAG + Reflexion)</strong></td>
+                        <td><span class="result-badge success">0.99</span></td>
+                        <td><span class="result-badge success">1.00</span></td>
+                        <td><span class="result-badge success">1.00</span></td>
+                        <td><span class="result-badge success">1.00</span></td>
+                        <td><span class="result-badge success">0.98</span></td>
+                    </tr>
+                </tbody>
+            </table>
+            <p style="text-align: center; margin-top: 0.5rem; font-size: 0.9em;"><em>규칙 기반 변환기 대비 약 20%p의 성능 향상을 달성했습니다.</em></p>
         </div>
 
         <h3>4.4 Implementation Issues & Solutions</h3>
+        <p>프로젝트 진행 중 발생했던 주요 기술적 문제와 해결 방안은 다음과 같습니다:</p>
         <div class="problem-list">
-            <li><strong>LLM 응답 형식 불일치:</strong> 프롬프트에 명시적 태그 삽입으로 해결</li>
-            <li><strong>변환 규칙 미준수:</strong> Self-Refinement 모듈을 통한 반복적 개선으로 보완</li>
-            <li><strong>RAG 맥락 부적합:</strong> 문서 chunk 크기 조정 및 유사도 필터링으로 개선</li>
+            <li><strong>LLM 응답 형식 불일치:</strong> LLM의 출력이 일정하지 않아 파싱 오류가 발생하는 문제가 있었습니다. 프롬프트에 ```java 태그를 명시적으로 삽입하여 코드 블록 출력을 유도하는 방식으로 해결했습니다[cite: 381, 383, 384].</li>
+            <li><strong>변환 규칙 미준수:</strong> "주석을 삭제하지 말라"는 등의 명시적 규칙을 LLM이 위반하는 경우가 있었습니다. 이는 Self-Refinement 모듈의 피드백 규칙에 해당 항목을 추가하여 반복적으로 교정하도록 개선했습니다.</li>
+            <li><strong>RAG 컨텍스트 부적합:</strong> RAG가 검색한 문서 조각(chunk)이 변환에 필요한 핵심 정보를 포함하지 않는 경우가 있었습니다. 문서의 chunk 크기를 의미 단위로 재조정하고 유사도 기반 필터링을 강화하여 해결했습니다.</li>
         </div>
     `
 };

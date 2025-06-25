@@ -5,4 +5,4 @@ build:
 	npm run compile
 
 backend:
-	python llm_pipelines.py
+	python server.py

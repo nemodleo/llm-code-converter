@@ -1,7 +1,7 @@
 {
   "name": "llm-code-converter",
   "displayName": "LLM Code Converter",
-  "description": "AI-powered code conversion tool with drag-to-# feature",
+  "description": "AI-powered code mapping to VO with unified project path",
   "version": "1.0.0",
   "publisher": "yourname",
   "engines": {
@@ -18,7 +18,7 @@
     "commands": [
       {
         "command": "llm-code-converter.convertCode",
-        "title": "Convert Selected Code Map to VO"
+        "title": "Map to VO"
       },
       {
         "command": "llm-code-converter.generateVO",
@@ -42,6 +42,53 @@
       {
         "command": "llm-code-converter.setOutputPath",
         "title": "Set Output Path"
+      },
+      {
+        "command": "llm-code-converter.setVOPath",
+        "title": "Set VO Path"
+      },
+      {
+        "command": "llm-code-converter.setServerPath",
+        "title": "Set Server Path"
+      },
+      {
+        "command": "llm-code-converter.startServer",
+        "title": "Start Python Server",
+        "icon": "$(play)"
+      },
+      {
+        "command": "llm-code-converter.stopServer",
+        "title": "Stop Python Server",
+        "icon": "$(stop)"
+      },
+      {
+        "command": "llm-code-converter.restartServer",
+        "title": "Restart Python Server",
+        "icon": "$(refresh)"
+      },
+      {
+        "command": "llm-code-converter.showLogs",
+        "title": "Show Server Logs",
+        "icon": "$(output)"
+      },
+      {
+        "command": "llm-code-converter.clearLogs",
+        "title": "Clear Logs",
+        "icon": "$(clear-all)"
+      },
+      {
+        "command": "llm-code-converter.setLogFilePath",
+        "title": "Set Log File Path"
+      },
+      {
+        "command": "llm-code-converter.startLogMonitoring",
+        "title": "Start Log Monitoring",
+        "icon": "$(eye)"
+      },
+      {
+        "command": "llm-code-converter.stopLogMonitoring",
+        "title": "Stop Log Monitoring",
+        "icon": "$(eye-closed)"
       }
     ],
     "viewsContainers": {
@@ -112,7 +159,7 @@
         },
         "llmCodeConverter.timeout": {
           "type": "number",
-          "default": 30000,
+          "default": 30000000,
           "description": "Request timeout in milliseconds"
         }
       }

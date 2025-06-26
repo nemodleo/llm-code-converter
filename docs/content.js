@@ -32,6 +32,7 @@ const content = {
             <span class="tech-tag">Ollama</span>
             <span class="tech-tag">FAISS (RAG)</span>
             <span class="tech-tag">Tree-sitter</span>
+            <span class="tech-tag">JavaLang</span>
             <span class="tech-tag">LangChain</span>
         </div>
         <div class="solution-highlights">

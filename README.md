@@ -2,13 +2,13 @@
 
 **프로젝트 공식 사이트:** [https://nemodleo.github.io/llm-code-converter](https://nemodleo.github.io/llm-code-converter)
 
-<hr style="border-top: 1px solid rgba(0,0,0,0.1); margin: 2em 0;">
+<br/>
 
 ### **1. 개요 (Overview)**
 
 **LLM Code Converter**는 레거시 Proworks 4 프로젝트를 최신 Proworks 5 프레임워크로 마이그레이션하는 개발자를 위해 설계된 고성능 Visual Studio Code Extension입니다. 본 확장 프로그램은 복잡하고 오류 발생 가능성이 높은 Map 기반의 동적 데이터 구조를 정적 타입의 Value Object(VO) 기반 코드로 자동 변환하는 과정을 지원합니다. 정교한 변환 로직을 내장하여 높은 정확도로 코드 변환을 수행함으로써, 개발 생산성과 코드 품질을 획기적으로 향상시킵니다.
 
-<hr style="border-top: 1px solid rgba(0,0,0,0.1); margin: 2em 0;">
+<br/>
 
 ### **2. 시스템 요구 사항 (System Requirements)**
 
@@ -20,7 +20,7 @@
 * **GPU:** 40GB 이하의 VRAM을 갖춘 GPU (로컬 LLM 구동 시 권장, 예: Ollama)
 * **네트워크:** 외부 LLM API에 의존하지 않아, 고객사 보안 정책에 따른 폐쇄망 환경에서도 완벽하게 작동하도록 설계되었습니다.
 
-<hr style="border-top: 1px solid rgba(0,0,0,0.1); margin: 2em 0;">
+<br/>
 
 ### **3. 설치 및 설정 (Installation & Setup)**
 
@@ -54,7 +54,7 @@ python server.py
 
 VS Code를 재시작한 후, 좌측 사이드바(Activity Bar)에 **LLM Code Converter** 아이콘이 나타나면 설치가 성공적으로 완료된 것입니다.
 
-<hr style="border-top: 1px solid rgba(0,0,0,0.1); margin: 2em 0;">
+<br/>
 
 ### **4. Extension 사용 방법 (How to Use)**
 
@@ -83,7 +83,7 @@ Extension은 프로젝트 전체의 Map 사용 패턴을 정밀하게 분석하�
       * *예시: "변수명은 camelCase로 작성해줘"*
 6.  변환된 코드는 일반적으로 새 파일로 생성되거나 현재 파일의 적절한 위치에 삽입됩니다.
 
-<hr style="border-top: 1px solid rgba(0,0,0,0.1); margin: 2em 0;">
+<br/>
 
 ### **5. 결과 확인 및 디버깅 (Review & Debugging)**
 

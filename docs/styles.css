@@ -53,22 +53,22 @@ h1, h2, h3, h4 {
 
 h2 {
     font-size: 1.8em;
-    margin-bottom: 35px; /* Increased margin */
+    margin-bottom: 35px;
     border-bottom: 3px solid var(--primary-color);
-    padding-bottom: 15px; /* Increased padding */
+    padding-bottom: 15px;
 }
 
 h3 {
     font-size: 1.3em;
-    margin: 30px 0 20px 0; /* Increased margin */
+    margin: 50px 0 20px 0;
 }
 
 /* --- Header --- */
 .header {
     text-align: center;
-    padding: 70px 0 50px 0; /* Increased padding */
+    padding: 70px 0 50px 0;
     border-bottom: 1px solid var(--border-color);
-    margin-bottom: 50px; /* Increased margin */
+    /* margin-bottom: 50px; */
 }
 .venue-badge {
     display: inline-block;
@@ -144,7 +144,7 @@ h3 {
     background: rgba(255, 255, 255, 0.85);
     backdrop-filter: blur(10px);
     z-index: 100;
-    margin-bottom: 50px; /* Increased margin */
+    margin-bottom: 50px;
     border-bottom: 1px solid var(--border-color);
 }
 .nav-container {
@@ -188,11 +188,11 @@ h3 {
 
 /* --- Sections --- */
 .section {
-    margin: 90px 0; /* Increased margin for more whitespace */
+    margin: 90px 0;
 }
 .section-header {
     text-align: center;
-    margin-bottom: 50px; /* Increased margin */
+    margin-bottom: 50px;
 }
 .section-header h2 {
     border-bottom: none;
@@ -212,7 +212,7 @@ h3 {
     border-radius: 2px;
 }
 .section-subtitle {
-    margin-top: 15px; /* Increased margin */
+    margin-top: 15px;
     color: var(--text-light);
     font-size: 1.1em;
 }
@@ -242,15 +242,17 @@ h3 {
     align-items: center;
     gap: 15px;
 }
-.tldr-icon { font-size: 1.5em; }
-.tldr-text { line-height: 1.5; }
+.tldr-text {
+    line-height: 1.5;
+    text-indent: 1.5em;
+}
 
 /* --- Abstract --- */
 .abstract {
     background: var(--light-gray-bg);
-    padding: 50px; /* Increased padding */
+    padding: 50px;
     border-radius: var(--border-radius);
-    margin: 50px 0; /* Increased margin */
+    margin: 50px 0;
     border-left: 5px solid var(--primary-color);
 }
 .abstract h2 {
@@ -273,7 +275,7 @@ h3 {
 /* --- Demo, Presentation, Video --- */
 .demo-section, .presentation-section {
     background: var(--light-gray-bg);
-    padding: 60px 0; /* Increased padding */
+    padding: 60px 0;
 }
 .video-container, .presentation-container {
     display: flex;
@@ -337,7 +339,7 @@ h3 {
     background: linear-gradient(145deg, #f0f7ff, #e6efff);
     padding: 40px;
     border-radius: 12px;
-    margin: 50px 0; /* Increased margin */
+    margin: 50px 0;
 }
 .architecture-header { text-align: center; margin-bottom: 30px; }
 .architecture-header h3 { color: var(--primary-color); }
@@ -348,13 +350,13 @@ h3 {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 30px;
-    margin-top: 40px; /* Increased margin */
+    margin-top: 40px;
 }
 .method-step.enhanced {
     background: var(--background-color);
     border: 1px solid var(--border-color);
     border-radius: var(--border-radius);
-    padding: 35px; /* Increased padding */
+    padding: 35px;
     text-align: center;
     box-shadow: var(--shadow);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -457,7 +459,7 @@ h3 {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 30px; /* Increased gap */
-    margin: 50px 0; /* Increased margin */
+    margin: 50px 0;
     text-align: center;
 }
 .highlight-card {
@@ -483,7 +485,7 @@ h3 {
 }
 .results-table-container {
     overflow-x: auto;
-    margin-top: 40px; /* Increased margin */
+    margin-top: 40px;
 }
 .results-table.enhanced {
     width: 100%;
@@ -528,11 +530,11 @@ h3 {
 /* --- Downloads Section --- */
 .download-section.premium {
     background: var(--light-gray-bg);
-    padding: 60px 0; /* Increased padding */
+    padding: 60px 0;
     margin: 50px 0;
     border-radius: var(--border-radius);
 }
-.download-header { text-align: center; margin-bottom: 50px; /* Increased margin */ }
+.download-header { text-align: center; margin-bottom: 50px; }
 .download-header h2 { border: none; }
 .download-subtitle {
     font-size: 1.1em;
@@ -652,14 +654,14 @@ pre.bibtex-content {
 .footer.premium {
     background: #2d3748;
     color: #a0aec0;
-    padding: 70px 0 30px 0; /* Increased padding */
-    margin-top: 80px; /* Increased margin */
+    padding: 70px 0 30px 0;
+    margin-top: 80px;
 }
 .footer-content {
     display: flex;
     justify-content: space-between;
     gap: 40px;
-    margin-bottom: 50px; /* Increased margin */
+    margin-bottom: 50px;
 }
 .footer-main { flex-basis: 40%; }
 .footer-logo {
@@ -700,7 +702,7 @@ pre.bibtex-content {
 }
 .footer-bottom {
     border-top: 1px solid #4a5568;
-    padding-top: 30px; /* Increased padding */
+    padding-top: 30px;
     display: flex;
     justify-content: space-between;
     align-items: center;

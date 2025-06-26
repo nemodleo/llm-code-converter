@@ -390,6 +390,9 @@ h3 {
     margin-top: auto;
     justify-content: center;
 }
+.method-details {
+    padding-top: 30px;
+}
 .step-metrics {
     margin-top: 15px;
     font-weight: 600;

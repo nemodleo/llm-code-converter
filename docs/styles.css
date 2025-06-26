@@ -534,13 +534,22 @@ h3 {
     margin: 50px 0;
     border-radius: var(--border-radius);
 }
-.download-header { text-align: center; margin-bottom: 50px; }
-.download-header h2 { border: none; }
+.download-header {
+    text-align: center;
+    margin-bottom: 10px;
+    /* margin-bottom: 50px; */
+}
+.download-header h2 {
+    border: none;
+    padding-bottom: 10px;
+    /* margin-bottom: 20px; */
+}
 .download-subtitle {
     font-size: 1.1em;
     color: var(--text-light);
 }
 .download-grid {
+    padding: 16px;
     display: grid;
     /* Adjusted minmax and gap to fit 4 items per row */
     grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
